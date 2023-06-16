@@ -18,7 +18,7 @@ import time
 import json
 import re
 
-with open("/Users/jennyyang/Documents/CCU/111-2/PythonAndNaturalLanguageProcessing/ArticutAccount/account.info", 'r', encoding='utf8') as f:
+with open("FILE_PATH", 'r', encoding='utf8') as f:
     account = json.load(f)
 username = account['username']
 apikey = account['api_key']
@@ -200,3 +200,21 @@ while (exit == 0):
     if exit != 1:
         print("\n\n-----------------------------------")
 
+# 這個中文書籍分類器的目的是根據提供的書籍資訊（書名、書籍介紹或博客來連結），判斷書籍的適讀對象，包括小孩、青少年或成人。
+
+# 首先，使用者可以選擇提供書名、書籍介紹或博客來連結來搜尋一本中文書籍的適讀對象。
+# 根據使用者提供的資訊，程式會從博客來網站搜尋該書籍的介紹，或者直接使用使用者提供的書籍介紹。
+
+# 接著使用ArticutAPI進行中文斷詞，將書籍資訊進行斷詞，將文本轉換成詞彙序列。
+# 讀取已有的訓練資料，包括書籍資訊斷詞和適讀對象等欄位，並將新的書籍資訊加入其中。
+# 使用CountVectorizer對斷詞後的文本進行特徵提取。
+# 將文本轉換成Bag-of-Words模型，把每個詞彙視為一個特徵，並計算每個詞彙在文本中的出現頻率。
+
+# 然後，使用train_test_split函數將提取到的特徵和相應的適讀對象劃分為80%的訓練集和20%的測試集。
+# 在訓練集上，使用MultinomialNB分類器進行模型訓練。
+# 最終的分類正確率為0.81。
+
+# 最後，對於新的文本進行預測，並根據模型預測結果顯示該書籍的適讀對象。
+# 會根據使用者的選擇，顯示書籍介紹、繼續搜尋其他書籍或結束程式，幫助讀者選擇適合的書籍。
+
+# 資料來源：政府資料開放平臺 臺灣出版新書預告書訊 https://data.gov.tw/dataset/6730 
